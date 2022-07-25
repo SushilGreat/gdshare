@@ -2,33 +2,34 @@
 ## demo
 [https://drive.google.com/drive/folders/1soZPZdN0beUTvnD8YbRXgOIeff7Dgwa2](https://drive.google.com/drive/folders/1soZPZdN0beUTvnD8YbRXgOIeff7Dgwa2)
 
-## 介绍
-这是一款受goindex启发而产生的项目，适合部署于cloudflare worker，相比原版有以下特性：
+## Introduction
+This is a project inspired by goindex, suitable for deployment on cloudflare workers, and has the following features compared to the original version
 
-- 全盘搜索（包括个人盘和所有有权限的团队盘，可点击搜索结果中的链接跳转到对应的google drive官方网址）
-- 分页浏览（可自定义每页文件数，每页可根据文件名和大小排序）
-- 更美观的UI（致谢 ant design）
-- 防爬虫，对于所有目录和文件，只有管理员才有读取和下载的权限（原版goindex可以通过在目录下防止 .password 来给目录设置读取密码，但无法限制单个文件的下载）
-- 可以生成下载直链，方便第三方下载工具下载，对于流媒体文件，可以用potplayer等播放器直接打开进行播放（可以自定义有效期）
-- 可以生成带有提取码的分享链接，方便分享给他人浏览和下载（同样支持自定义有效期）
+-Full disk search (including personal disk and all authorized team disks, you can click the link in the search result to jump to the corresponding google drive official website)
+- Page browsing (the number of files per page can be customized, and each page can be sorted by file name and size)
+- More beautiful UI (thanks to ant design)
+- Anti-crawler, for all directories and files, only the administrator has the permission to read and download (the original goindex can set the read password for the directory by preventing .password in the directory, but it cannot limit the download of a single file)
+- A direct download link can be generated, which is convenient for third-party download tools to download. For streaming media files, you can directly open and play them with players such as potplayer (the validity period can be customized)
+- A sharing link with an extraction code can be generated to facilitate sharing for others to browse and download (also supports custom validity period)
 
 ## changelog
 ### 2022-03-10
-- 更新`react-router-cache-route`依赖，解决页面未加载完全时 前进/后退 造成卡死的现象
-- 将模版中的静态文件从jsdelivr移到unpkg，加速国内访问……
+-Update the react-router-cache-route dependency to solve the phenomenon of stuck when the page is not fully loaded by moving forward/backward
+
+-Move the static files in the template from jsdelivr to unpkg to speed up domestic access...
 
 ### 2020-08-12
-- 在首页展示团队盘列表（最多100条），点击对应名称即可进入
-- 添加批量获取直链功能（可自行选择，也可一键获取当前目录下所有直接子文件的直链）
-- 添加唤起外部播放器功能（支持IINA/PotPlayer/VLC/nPlayer/MXPlayer）
-- 添加指定范围搜索功能（可在目录列表页进行搜索，由于Google API的限制，只能搜索当前目录的直接子文件，无法搜索到递归子目录的内容。若当前目录为团队盘根目录，则支持整盘搜索）
-- 「显示路径」按钮可正确识别团队盘名称（之前会返回"Drive"）
-- 后端搜索接口添加失败重试机制
+- Display the team disk list (up to 100) on the homepage, click the corresponding name to enter
+- Added the function of obtaining direct links in batches (you can choose by yourself, or you can get the straight links of all direct sub-files in the current directory with one click)
+- Add evoke external player function (support IINA/PotPlayer/VLC/nPlayer/MXPlayer)
+- Added a search function in a specified range (you can search on the directory list page. Due to the limitation of Google API, you can only search the direct sub-files of the current directory, and the contents of recursive sub-directories cannot be searched. If the current directory is the root directory of the team disk, then Support whole disk search)
+- "Show Path" button now correctly identifies team drive names (previously returned "Drive")
+- Added failure retry mechanism to backend search interface
 
 ## tips
-- 本工具亦可当作goindex使用，只需将目录ID添加到 `https://your.website.com/ls/` 后即可。
-比如浏览团队盘内容可以直接访问 `https://your.website.com/ls/你的团队盘ID`
-浏览个人盘根目录可以直接访问 `https://your.website.com/ls/root`
+- This tool can also be used as goindex, just add the directory ID to `https://your.website.com/ls/`.
+For example, to browse the content of the team disk, you can directly visit `https://your.website.com/ls/your team disk ID`
+Browsing the root directory of the personal disk can directly access `https://your.website.com/ls/root`
 
 ## 搭建方法
 打开[template.js](./template.js)，根据提示修改变量：
@@ -47,4 +48,4 @@ const CONFIG = {
     }
 }
 ```
-变量设置完成后，将 `template.js` 整体复制到 cloudflare worker 中（具体步骤可参考[https://www.jiyiblog.com/archives/031279.html](https://www.jiyiblog.com/archives/031279.html)），完成。
+After the variables are set, copy template.js as a whole to the cloudflare worker (for specific steps, please refer to https://www.jiyiblog.com/archives/031279.html) and complete.
