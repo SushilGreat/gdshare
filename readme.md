@@ -44,7 +44,7 @@ const CONFIG = {
         client_secret: "insert_your_client_secret", // Ditto required
         refresh_token: "insert_your_refresh_token", // Ditto required 
         expires: 0,
-        access_token: "" // 
+        access_token: "" // Not fill
     }
 }
 ```
